@@ -1,0 +1,20 @@
+{
+    "name": "selmonal/imagemanager",
+    "description": "",
+    "authors": [
+        {
+            "name": "selmonal",
+            "email": "selmonal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "illuminate/support": "4.1.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Selmonal\\Imagemanager": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
