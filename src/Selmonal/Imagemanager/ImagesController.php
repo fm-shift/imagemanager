@@ -1,6 +1,8 @@
 <?php namespace Selmonal\Imagemanager;
 
+use Illuminate\Support\Facades\App;
 use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Input;
 
 class ImagesController extends Controller {
 
@@ -30,11 +32,11 @@ class ImagesController extends Controller {
 	{
 		$manipulator = App::make("Selmonal\Imagemanager\ImageManipulator");
 
-		$data = $manipulator->run( Input::file("image") );
+		$path = $manipulator->run( Input::file("file-image") );
 
 		try 
 		{
-			return $this->repository->insert( $data );
+			// return $this->repository->insert( $data );
 		} 
 
 		catch (\Exception $e) 

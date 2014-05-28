@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Artisan;
 
 class ImagemanagerServiceProvider extends ServiceProvider {
 
@@ -27,6 +28,10 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 		View::addNamespace('SIM', $path);
 
 		App::bind('Selmonal\Imagemanager\ImageRepositoryInterface', 'Selmonal\Imagemanager\EloquentImageRepository');
+
+		// Intervention image manipulator
+		App::register("Intervention\Image\ImageServiceProvider");
+
 	}
 
 	/**
