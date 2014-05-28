@@ -16,6 +16,19 @@ class Image extends Model {
 	 * 
 	 * @var array
 	 */
-	protected $fillable = array( "name", "folder", "extension" );
+	protected $fillable = array( "caption", "path", "extension" );
 
+	/**
+	 * For response data
+	 * 
+	 * @return array
+	 */
+	public function forResponse()
+	{
+		return array(
+
+			"path"    => $this->path,
+			"thumb"   => "/assets/images/thumb/" . $this->path		
+		);
+	}	
 }

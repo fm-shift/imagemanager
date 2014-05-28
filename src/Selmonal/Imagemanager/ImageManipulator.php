@@ -1,26 +1,86 @@
 <?php namespace Selmonal\Imagemanager;
 
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageManipulator {
 
-	public function run( UploadedFile $file )
+	/**
+	 * Зураг хуулах хавтас
+	 * 
+	 * @var string
+	 */
+	private $folder = "";
+
+	/**
+	 * Суурь хавтас
+	 * 
+	 * @var string
+	 */
+	private $basePath = "/assets/images/";
+
+	/**
+	 * Төрөлүүд
+	 * 
+	 * @var array
+	 */
+	private $sizes = array(
+
+		"thumb" => array(
+			"width"  => 300,
+			"height" => 200
+		),
+		"original" => array(
+			"width"  => false,
+			"height" => false
+		)
+	);
+
+	public function __construct()
 	{
-		$extension = $file->getClientOriginalExtension();
+		$this->basePath = public_path() . $this->basePath;
 
-		$filename = date("md") . str_random(6) . "." . $extension;
-
-		$folder = "";
-		$dir = public_path() . "/assets/images/original/" . $folder . $filename;
-		$thumb_dir = public_path() . "/assets/images/thumb/" . $folder . $filename;
-
-		Image::make( $file->getRealPath() )
-					->save($dir)
-					->resize(300, 200)
-					->save($thumb_dir);
-
-		return $folder . $filename;
+		$this->folder = date("Ymd");
 	}
 
+	public function run( UploadedFile $file )
+	{	
+		$extension = $file->getClientOriginalExtension();
+
+		// Create filename
+		$filename = $this->generateImagename( $extension );
+
+		// Create image file path
+		$this->image_path = $this->folder . "/" . $filename;
+
+
+		foreach($this->sizes as $key => $size)
+		{
+			$this->resizeAndSave($file->getRealPath(), $key, $size);
+		}
+
+		return array( 
+			"path"      => $this->image_path,
+			"extension" => $extension
+		);
+	}
+
+	private function resizeAndSave( $imageRealPath, $size_name, $size ) 
+	{
+		$folder_path = $this->basePath . $size_name . "/" . $this->folder;
+
+		File::makeDirectory($folder_path, 777, true, true);
+
+		$path = $this->basePath . $size_name . "/" . $this->image_path;
+
+		$image = Image::make($imageRealPath);
+
+		$image->resize($size["width"], $size["height"])->save($path);
+	}
+
+	private function generateImagename( $ext )
+	{
+		return date("dmY") . str_random(6) . "." . $ext;
+	}
 }

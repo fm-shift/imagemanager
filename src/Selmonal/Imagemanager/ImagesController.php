@@ -32,11 +32,18 @@ class ImagesController extends Controller {
 	{
 		$manipulator = App::make("Selmonal\Imagemanager\ImageManipulator");
 
-		$path = $manipulator->run( Input::file("file-image") );
+		if( ! Input::hasFile("file-image")) return "No image uploaded!";
+		
+		$data = $manipulator->run( Input::file("file-image") );
+
+		$data["caption"] = Input::get("caption");
 
 		try 
 		{
-			// return $this->repository->insert( $data );
+			$image = $this->repository->insert( $data );
+
+
+			return $image->forResponse();
 		} 
 
 		catch (\Exception $e) 

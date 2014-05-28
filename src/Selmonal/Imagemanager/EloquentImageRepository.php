@@ -34,13 +34,13 @@ class EloquentImageRepository implements ImageRepositoryInterface {
 	private function validate( $data )
 	{
 		$v = Validator::make($data, array(
-			
-			"name"      => "required",
-			"folder"    => "required",
+		
+			"path"      => "required",
+			"caption"   => "",
 			"extension" => "required"
 		));
 
-		if($v->fails())
+		if($v->fails()) 
 			throw new \Exception("Please pass the required fields.");
 	}
 }

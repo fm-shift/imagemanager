@@ -40,6 +40,9 @@ var ImageManagerUpload = Backbone.View.extend({
 
 				that.btnUpload.button("reset");
 
+				that.$(".image-manager-uploaded-image").html( response.path );
+
+				that.$("#uploaded-img").attr( "src", response.thumb );
 			},
 
 			uploadProgress: function( event, position, total, percentComplete ) {

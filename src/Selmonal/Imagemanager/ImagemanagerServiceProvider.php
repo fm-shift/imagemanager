@@ -21,7 +21,6 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{	
-		// dd(__DIR__ . "../../views/");
 		$path = realpath(__DIR__. "/../../views");
 
 		// naming views
