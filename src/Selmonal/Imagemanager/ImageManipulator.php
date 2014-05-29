@@ -62,6 +62,7 @@ class ImageManipulator {
 
 		foreach($this->sizes as $key => $size)
 		{
+			$this->createSizeFolder($key);
 			$this->resizeAndSave($file->getRealPath(), $key, $size);
 		}
 
@@ -92,6 +93,24 @@ class ImageManipulator {
 		})->save($path);
 	}
 
+	/**
+	 * Хэмжээтэй хавтаснуудыг үүсээгүй байвал үүсгэнэ.
+	 * 
+	 * @return void
+	 */
+	private function createSizeFolder( $size_name )
+	{
+		$p = $this->basePath . $size_name;
+
+		if( ! File::isDirectory($p)) mkdir($p);
+	}
+
+	/**
+	 * Зургын нэрийг үүсгэх
+	 * 
+	 * @param  string $ext Зургын өргөтгөл
+	 * @return string
+	 */
 	private function generateImagename( $ext )
 	{
 		return date("dmY") . str_random(6) . "." . $ext;
