@@ -86,9 +86,9 @@ class ImageManipulator {
 
 		$ratio = isset($size["ratio"]) ? $size["ratio"] : true;
 
-		$image->resize($size["width"], $size["height"], function( $constraint ) {
+		$image->resize($size["width"], $size["height"], function( $constraint ) use ($ratio) {
 
-			$constraint->aspectRatio();
+			if($ratio) $constraint->aspectRatio();
 
 		})->save($path);
 	}
