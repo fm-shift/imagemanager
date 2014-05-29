@@ -70,7 +70,9 @@ class ImageManipulator {
 	{
 		$folder_path = $this->basePath . $size_name . "/" . $this->folder;
 
-		File::makeDirectory($folder_path, 777, true, true);
+		// Folder uusgeh
+		if( ! File::isDirectory($folder_path)) 
+			mkdir($folder_path);
 
 		$path = $this->basePath . $size_name . "/" . $this->image_path;
 
