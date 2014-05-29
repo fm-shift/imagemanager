@@ -74,12 +74,6 @@ class ImageManipulator {
 
 	private function resizeAndSave( $imageRealPath, $size_name, $size ) 
 	{
-		$folder_path = $this->basePath . $size_name . "/" . $this->folder;
-
-		// Folder uusgeh
-		if( ! File::isDirectory($folder_path)) 
-			mkdir($folder_path);
-
 		$path = $this->basePath . $size_name . "/" . $this->image_path;
 
 		$image = Image::make($imageRealPath);
@@ -101,6 +95,10 @@ class ImageManipulator {
 	private function createSizeFolder( $size_name )
 	{
 		$p = $this->basePath . $size_name;
+
+		if( ! File::isDirectory($p)) mkdir($p);
+
+		$p .= "/" . $this->folder;
 
 		if( ! File::isDirectory($p)) mkdir($p);
 	}
