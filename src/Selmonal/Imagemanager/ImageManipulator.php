@@ -27,13 +27,18 @@ class ImageManipulator {
 	 */
 	private $sizes = array(
 
+		"small" => array(
+			"width"  => "80",
+			"height" => "70"
+		),
 		"thumb" => array(
 			"width"  => 300,
-			"height" => 200
+			"height" => 200,			
 		),
 		"original" => array(
-			"width"  => false,
-			"height" => false
+			"width"  => 600,
+			"height" => false,
+			"ratio"  => true,
 		)
 	);
 
@@ -78,7 +83,13 @@ class ImageManipulator {
 
 		$image = Image::make($imageRealPath);
 
-		$image->resize($size["width"], $size["height"])->save($path);
+		$ratio = isset($size["ratio"]) ? $size["ratio"] : true;
+
+		$image->resize($size["width"], $size["height"], function( $constraint ) {
+
+			$constraint->aspectRatio();
+
+		})->save($path);
 	}
 
 	private function generateImagename( $ext )
