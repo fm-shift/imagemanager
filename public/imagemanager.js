@@ -43,6 +43,8 @@ var ImageManagerUpload = Backbone.View.extend({
 				that.$(".image-manager-uploaded-image").html( response.path );
 
 				that.$("#uploaded-img").attr( "src", response.thumb );
+
+				Window.imageManager.setSelectedPath( response.path );
 			},
 
 			uploadProgress: function( event, position, total, percentComplete ) {
@@ -79,10 +81,15 @@ var ImageManager = Backbone.View.extend({
 
 	initialize: function()
 	{
-		this.tools.upload = new ImageManagerUpload({ selected: this.selected });
-		this.tools.list = new ImageManagerList({ selected: this.selected });
+		this.tools.upload = new ImageManagerUpload();
+		this.tools.list = new ImageManagerList();
 
 		this.render();
+	},
+
+	events: {
+
+		"click .btn-select" : "selectAndExit",
 	},
 
 	render: function()
@@ -104,10 +111,11 @@ var ImageManager = Backbone.View.extend({
 		}
 	},
 
-	select: function()
-	{	
-		// Initialize upload form first.
-		// this.bodyElement.html( this.upload.render().$el.html() );
+	select: function( options )
+	{
+		this.setSelectedPath(null);
+
+		this.callbackSelected = options.selected;
 
 		this.showTab("upload");
 
@@ -121,9 +129,21 @@ var ImageManager = Backbone.View.extend({
 		this.tools[tabId].run();
 	},
 
-	selected: function( data )
+	setSelectedPath: function( path )
 	{
-		alert("")
+		this.selectedPath = path;
+
+		if(this.selectedPath == null)
+			this.$(".btn-select").button("loading");
+		else
+			this.$(".btn-select").button("reset");
+	},
+
+	selectAndExit: function()
+	{
+		this.callbackSelected( this.selectedPath );
+
+		this.$el.modal("hide");
 	}
 
 });

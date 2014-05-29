@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="modal-footer">
-			<button type="button" class="btn btn-primary">Сонгох</button>
+			<button type="button" class="btn btn-primary btn-select" data-loading-text="Зураг сонгогдоогүй...">Тийм</button>
 			<button type="button" class="btn btn-default" data-dismiss="modal">Гарах</button>
 		</div>
 	</div>

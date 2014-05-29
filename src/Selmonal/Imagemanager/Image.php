@@ -28,7 +28,7 @@ class Image extends Model {
 		return array(
 
 			"path"    => $this->path,
-			"thumb"   => "/assets/images/thumb/" . $this->path		
+			"thumb"   => "/assets/images/thumb/" . $this->path
 		);
 	}	
 }
