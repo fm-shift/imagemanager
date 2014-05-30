@@ -14,7 +14,7 @@ class EloquentImageRepository implements ImageRepositoryInterface {
 	 */
 	public function paginate( $limit, $offset = 0)
 	{
-		return Image::limit($limit)->offset($offset)->get();
+		return Image::orderBy("id", "DESC")->paginate($limit);
 	}
 
 	/**

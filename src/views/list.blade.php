@@ -15,7 +15,7 @@
 
 	 	<% _.each(images, function(image) { %>
 
-		<div class="col-sm-3" style="margin-bottom:10px;">
+		<div class="simbox" style="margin-bottom:10px;">
 			<div class="simbox-item img-thumbnail">
 				<img src="/assets/images/thumb/<%= image.path %>" class="simbox-img" />
 				<div class="img-name">
@@ -27,12 +27,32 @@
 		<% }); %>
 	</div>
 
+	<div>
+		<div class="pull-left" style="margin-left:10px;">
+			<ul class="pager">
+			  <li><a style="cursor:pointer" class="btn-prev">Өмнөх</a></li>
+			  <li><a style="cursor:pointer" class="btn-next">Дараах</a></li>
+			</ul>
+		</div>
+
+		<div class="pull-right" style="margin-top:25px; margin-right:10px;">
+			Хуудас (<span class="page-current"><%= page_current %></span>/<span class="page-total"><%= page_total %></span>), Нийт (<span class="total-count"><%= total %></span>)
+		</div>
+	</div>
+
+	<div class="clearfix"></div>
 </script>
+
 
 <style type="text/css">	
 
+	.simbox {
+		display: inline-block;
+		margin-left: 10px;
+	}
+
 	.simbox-img {
-		max-width: 100%;
+		/*max-width: 100%;*/
 		max-height: 110px;
 		cursor: pointer;
 	}

@@ -61,28 +61,68 @@ var ImageManagerList = Backbone.View.extend({
 
 	title: "Зургын сангаас",
 
-	initialize: function()
-	{
-		var that = this;
+	events: {
 
-		$.get("images", {}, function(response)
-		{
-			that.images = response;
-		});
+		"click .btn-next": "nextPage",
+		"click .btn-prev": "prevPage",
+
 	},
 
 	render: function()
 	{
 
-		var html = _.template( $("#image-manager-list").html(), { images: this.images } );
+		var html = _.template( $("#image-manager-list").html(), { 
+			images: this.images.data,
+			page_total: this.images.last_page,
+			page_current: this.images.current_page,
+			total: this.images.total
+		});
 
 		this.$el.html( html );
+
+
+		if(this.images.current_page == 1)
+			this.$(".btn-prev").parent("li").addClass("disabled");
+
+		if(this.images.current_page == this.images.last_page)
+			this.$(".btn-next").parent("li").addClass("disabled");
 	},
 
 	run: function()
 	{
-		this.render();
+		this.reload(0); // эхний хуудас
 	},
+
+	nextPage: function( e )
+	{	
+		var page = this.images.current_page + 1;
+
+		if(page > this.images.last_page) return;
+
+
+		this.reload( page );
+	},
+
+	prevPage: function()
+	{
+		var page = this.images.current_page - 1;
+
+		if(page < 1) return;
+
+		this.reload( page );
+	},
+
+	reload: function( page )
+	{
+		var that = this;
+
+		$.get("images", { page: page }, function(response)
+		{
+			that.images = response;
+
+			that.render();
+		});
+	}
 });
 
 var ImageManager = Backbone.View.extend({
