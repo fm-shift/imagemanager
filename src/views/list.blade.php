@@ -17,7 +17,7 @@
 
 		<div class="col-sm-3" style="margin-bottom:10px;">
 			<div class="simbox-item img-thumbnail">
-				<img src="/assets/images/thumb/<%= image %>" class="simbox-img" />
+				<img src="/assets/images/thumb/<%= image.path %>" class="simbox-img" />
 				<div class="img-name">
 					Hello world
 				</div>

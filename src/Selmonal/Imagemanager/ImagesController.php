@@ -20,7 +20,7 @@ class ImagesController extends Controller {
 	 */
 	public function index()
 	{
-		return $repository->paginate( 10, Input::get("page") );
+		return $this->repository->paginate( 10, Input::get("page") );
 	}
 
 	/**

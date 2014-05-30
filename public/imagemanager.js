@@ -61,20 +61,20 @@ var ImageManagerList = Backbone.View.extend({
 
 	title: "Зургын сангаас",
 
+	initialize: function()
+	{
+		var that = this;
+
+		$.get("images", {}, function(response)
+		{
+			that.images = response;
+		});
+	},
+
 	render: function()
 	{
-		var images = [
-			"20140530/30052014O9vhk6.jpg",
-			"20140530/30052014oEo4zx.jpg",
-			"20140530/30052014rQYTxl.jpg",
-			"20140530/30052014Sy5OqN.jpg",
-			"20140530/30052014vLjks4.jpg",
-			"20140530/30052014x4GpAl.jpg",
-			"20140530/30052014ZhOjuN.jpg",
-			"20140530/30052014zmbGkg.jpg"
-		];
 
-		var html = _.template( $("#image-manager-list").html(), { images: images } );
+		var html = _.template( $("#image-manager-list").html(), { images: this.images } );
 
 		this.$el.html( html );
 	},
