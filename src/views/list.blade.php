@@ -2,7 +2,7 @@
 
 	<div class="col-md-8 pull-right" style="margin-top:10px;">
 		<div class="input-group">
-	      <input type="text" class="form-control">
+	      <input type="text" class="form-control" id="search" value="<%= query %>">
 	      <span class="input-group-btn">
 	        <button class="btn btn-default" type="button">Хайх!</button>
 	      </span>
@@ -18,9 +18,7 @@
 		<div class="simbox" style="margin-bottom:10px;">
 			<div class="simbox-item img-thumbnail">
 				<img src="/assets/images/thumb/<%= image.path %>" class="simbox-img" />
-				<div class="img-name">
-					Hello world
-				</div>
+				<div class="img-name"><%= image.caption %></div>
 			</div>
 		</div>
 

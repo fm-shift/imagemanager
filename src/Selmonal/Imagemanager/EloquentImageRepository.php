@@ -12,9 +12,12 @@ class EloquentImageRepository implements ImageRepositoryInterface {
 	 * 
 	 * @return Collection
 	 */
-	public function paginate( $limit, $offset = 0)
+	public function paginate( $limit, array $options = array())
 	{
-		return Image::orderBy("id", "DESC")->paginate($limit);
+		$query = isset($options["query"]) ?
+							$options["query"] : "";
+
+		return Image::orderBy("id", "DESC")->where("caption" , "like" , "%". $query ."%")->paginate($limit);
 	}
 
 	/**

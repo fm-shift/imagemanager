@@ -65,6 +65,7 @@ var ImageManagerList = Backbone.View.extend({
 
 		"click .btn-next": "nextPage",
 		"click .btn-prev": "prevPage",
+		"keyup #search"  : "onSearchPressed"
 
 	},
 
@@ -75,7 +76,8 @@ var ImageManagerList = Backbone.View.extend({
 			images: this.images.data,
 			page_total: this.images.last_page,
 			page_current: this.images.current_page,
-			total: this.images.total
+			total: this.images.total,
+			query: this.query
 		});
 
 		this.$el.html( html );
@@ -116,12 +118,22 @@ var ImageManagerList = Backbone.View.extend({
 	{
 		var that = this;
 
-		$.get("images", { page: page }, function(response)
+		$.get("images", { page: page, query: this.query }, function(response)
 		{
 			that.images = response;
 
 			that.render();
 		});
+	},
+
+	onSearchPressed: function( e )
+	{
+		if(e.keyCode == 13)
+		{
+			this.query = this.$("#search").val();
+
+        	this.reload(0);
+    	}
 	}
 });
 
