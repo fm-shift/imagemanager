@@ -30,5 +30,6 @@ class Image extends Model {
 			"path"    => $this->path,
 			"thumb"   => "/assets/images/thumb/" . $this->path
 		);
-	}	
+	}
+	
 }

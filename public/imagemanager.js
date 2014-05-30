@@ -61,12 +61,22 @@ var ImageManagerList = Backbone.View.extend({
 
 	title: "Зургын сангаас",
 
-	events: {
-	},
-
 	render: function()
 	{
-		this.$el.html("hello");
+		var images = [
+			"20140530/30052014O9vhk6.jpg",
+			"20140530/30052014oEo4zx.jpg",
+			"20140530/30052014rQYTxl.jpg",
+			"20140530/30052014Sy5OqN.jpg",
+			"20140530/30052014vLjks4.jpg",
+			"20140530/30052014x4GpAl.jpg",
+			"20140530/30052014ZhOjuN.jpg",
+			"20140530/30052014zmbGkg.jpg"
+		];
+
+		var html = _.template( $("#image-manager-list").html(), { images: images } );
+
+		this.$el.html( html );
 	},
 
 	run: function()
@@ -94,6 +104,8 @@ var ImageManager = Backbone.View.extend({
 
 	render: function()
 	{
+		var that = this;
+
 		this.bodyElement = this.$(".modal-body");
 
 		// Render tab items
@@ -105,10 +117,19 @@ var ImageManager = Backbone.View.extend({
 
 
 			this.$(".nav").append("<li>" + e + "</li>");
-			this.$(".tab-content").append('<div class="tab-pane" id="' + key + '">' + tool.title + '</div>');
+			this.$(".tab-content").append('<div class="tab-pane fade in" id="' + key + '">' + tool.title + '</div>');
 
 			tool.setElement(this.$("#" + key));
 		}
+
+
+		this.$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+		  	var tabId = $(e.target).attr("href").replace("#", "");
+
+		  	that.tools[tabId].run();
+		})
+
 	},
 
 	select: function( options )
@@ -117,16 +138,10 @@ var ImageManager = Backbone.View.extend({
 
 		this.callbackSelected = options.selected;
 
-		this.showTab("upload");
+		// default aar upload tab ajillana.
+		this.$('.nav a[href="#upload"]').tab("show");
 
 		this.$el.modal("show"); // Use bootstrap modal
-	},
-
-	showTab: function( tabId ) 
-	{
-		this.$('.nav a[href="#' + tabId + '"]').tab("show");
-
-		this.tools[tabId].run();
 	},
 
 	setSelectedPath: function( path )

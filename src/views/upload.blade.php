@@ -1,6 +1,6 @@
 <div class="template" id="image-manager-upload">
 
-	<form id="upload-form" action="/images" method="post" enctype="multipart/form-data">
+	<form id="upload-form" action="/images" method="post" enctype="multipart/form-data" style="padding:20px;">
 		<input type="text" placeholder="Зургын нэр" name="caption" />
 
 		<div class="row" style="width:40%; margin-top:12px;">
@@ -14,11 +14,10 @@
 
 		<img src="" class="img-thumbnail" alt="SIM" id="uploaded-img" />
 
-		<div class="image-manager-uploaded-image">http://localhost/</div>
+		<div class="image-manager-uploaded-image"></div>
 	</form>
 
 	<div class="clearfix"></div>
 
 	<span id="uploading-status"></span>
-</div>
 </div>

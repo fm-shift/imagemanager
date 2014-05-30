@@ -6,7 +6,7 @@
 			<h4 class="modal-title">Зураг сонгох</h4>
 		</div>
 
-		<div class="modal-body">
+		<div class="modal-body" style="padding:0;">
 			<ul class="nav nav-tabs">
 			</ul>
 
