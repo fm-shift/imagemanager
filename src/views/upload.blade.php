@@ -8,7 +8,7 @@
 				<input type="file" name="file-image" />
 			</div> 
 			<div class="col-md-4">
-				<button class="btn btn-primary" type="button" id="btn-upload" data-loading-text="Хуулж байна...">Хуулах</button>	
+				<button class="btn btn-default" type="button" id="btn-upload" data-loading-text="Хуулж байна...">Хуулах</button>	
 			</div>
 		</div>
 
