@@ -15,7 +15,7 @@
 
 	 	<% _.each(images, function(image) { %>
 
-		<div class="simbox" style="margin-bottom:10px;">
+		<div class="simbox" style="margin-bottom:10px;" path="<%= image.path %>">
 			<div class="simbox-item img-thumbnail">
 				<img src="/assets/images/thumb/<%= image.path %>" class="simbox-img" />
 				<div class="img-name"><%= image.caption %></div>
@@ -75,6 +75,15 @@
 		color: white;
 		text-align: center;
 		background: rgba(0,0,0,0.6);
+	}
+
+	.selected.simbox .img-thumbnail, .simbox:hover > .img-thumbnail {
+		border-color:red;
+	}
+	.simbox .img-thumbnail {
+		-webkit-border-radius: 0px;
+		-moz-border-radius: 0px;
+		border-radius: 0px;
 	}
 
 	/* Chrome, Safari, Opera */

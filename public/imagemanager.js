@@ -65,9 +65,11 @@ var ImageManagerList = Backbone.View.extend({
 
 		"click .btn-next": "nextPage",
 		"click .btn-prev": "prevPage",
-		"keyup #search"  : "onSearchPressed"
-
+		"keyup #search"  : "onSearchPressed",
+		"click .simbox"  : "simboxClicked"
 	},
+
+	selectedEl: null,
 
 	render: function()
 	{
@@ -91,7 +93,7 @@ var ImageManagerList = Backbone.View.extend({
 	},
 
 	run: function()
-	{
+	{		
 		this.reload(0); // эхний хуудас
 	},
 
@@ -134,6 +136,17 @@ var ImageManagerList = Backbone.View.extend({
 
         	this.reload(0);
     	}
+	},
+
+	simboxClicked: function( e )
+	{
+		if(this.selectedEl != null)
+			this.selectedEl.removeClass("selected");
+
+
+		this.selectedEl = $( e.target ).parents(".simbox");
+		this.selectedEl.addClass("selected");
+		Window.imageManager.setSelectedPath( this.selectedEl.attr("path") );
 	}
 });
 
@@ -179,7 +192,12 @@ var ImageManager = Backbone.View.extend({
 
 		  	var tabId = $(e.target).attr("href").replace("#", "");
 
-		  	that.tools[tabId].run();
+		  	if( ! that.tools[tabId].hasOwnProperty("firsttime"))
+		  	{
+		  		that.tools[tabId].run();
+		  		
+		  		that.tools[tabId].firsttime = false;
+		  	}
 		})
 
 	},
