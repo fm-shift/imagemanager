@@ -32,7 +32,7 @@ Packages
 
 Service provider ийг өөрийнхөө төсөлд бүртгүүлнэ. `app/config/app.php` файлыг нээгээд доорх мөрийг `providers` хэсэгт нэмнэ.
 
-    'Way\Generators\GeneratorsServiceProvider'
+    'Selmonal\Imagemanager\ImagemanagerServiceProvider'
 
 ӨС-д images table үүсгэх.
 
