@@ -34,7 +34,7 @@
 .selected.simbox .img-thumbnail, .simbox:hover > .img-thumbnail {
 	border-color:red;
 }
-.simbox .img-thumbnail {
+.simbox .img-thumbnail, #myModal .modal-content {
 	-webkit-border-radius: 0px;
 	-moz-border-radius: 0px;
 	border-radius: 0px;
