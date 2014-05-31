@@ -31,6 +31,8 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 		// Intervention image manipulator
 		App::register("Intervention\Image\ImageServiceProvider");
 
+
+		$this->package('selmonal/imagemanager');
 	}
 
 	/**

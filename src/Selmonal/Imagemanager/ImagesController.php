@@ -1,6 +1,7 @@
 <?php namespace Selmonal\Imagemanager;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Input;
 

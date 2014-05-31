@@ -1,6 +1,7 @@
 <?php namespace Selmonal\Imagemanager;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Config;
 use Intervention\Image\Facades\Image;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -13,38 +14,9 @@ class ImageManipulator {
 	 */
 	private $folder = "";
 
-	/**
-	 * Суурь хавтас
-	 * 
-	 * @var string
-	 */
-	private $basePath = "/assets/images/";
-
-	/**
-	 * Төрөлүүд
-	 * 
-	 * @var array
-	 */
-	private $sizes = array(
-
-		"small" => array(
-			"width"  => "80",
-			"height" => "70"
-		),
-		"thumb" => array(
-			"width"  => 300,
-			"height" => 200,			
-		),
-		"original" => array(
-			"width"  => 600,
-			"height" => false,
-			"ratio"  => true,
-		)
-	);
-
 	public function __construct()
 	{
-		$this->basePath = public_path() . $this->basePath;
+		$this->basePath = public_path() . Config::get("imagemanager::config.basePath");
 
 		$this->folder = date("Ymd");
 	}
@@ -59,8 +31,9 @@ class ImageManipulator {
 		// Create image file path
 		$this->image_path = $this->folder . "/" . $filename;
 
+		$sizes = Config::get("imagemanager::config.sizes");
 
-		foreach($this->sizes as $key => $size)
+		foreach($sizes as $key => $size)
 		{
 			$this->createSizeFolder($key);
 			$this->resizeAndSave($file->getRealPath(), $key, $size);
