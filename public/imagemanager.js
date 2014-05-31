@@ -44,6 +44,9 @@ var ImageManagerUpload = Backbone.View.extend({
 
 				that.$("#uploaded-img").attr( "src", response.thumb );
 
+
+				this.selectedPath = response.path;
+
 				Window.imageManager.setSelectedPath( response.path );
 			},
 
@@ -66,7 +69,8 @@ var ImageManagerList = Backbone.View.extend({
 		"click .btn-next": "nextPage",
 		"click .btn-prev": "prevPage",
 		"keyup #search"  : "onSearchPressed",
-		"click .simbox"  : "simboxClicked"
+		"click .simbox"  : "simboxClicked",
+		"dblclick .simbox" : "simboxDblClicked"
 	},
 
 	selectedEl: null,
@@ -146,7 +150,17 @@ var ImageManagerList = Backbone.View.extend({
 
 		this.selectedEl = $( e.target ).parents(".simbox");
 		this.selectedEl.addClass("selected");
-		Window.imageManager.setSelectedPath( this.selectedEl.attr("path") );
+
+		this.selectedPath = this.selectedEl.attr("path");
+
+		Window.imageManager.setSelectedPath( this.selectedPath );
+	},
+
+	simboxDblClicked: function( e ) 
+	{
+		this.simboxClicked(e);
+
+		Window.imageManager.selectAndExit();
 	}
 });
 
@@ -196,7 +210,7 @@ var ImageManager = Backbone.View.extend({
 		  	{
 		  		that.tools[tabId].run();
 		  		
-		  		that.tools[tabId].firsttime = false;
+		  		that.tools[tabId].firsttime = false;		  		
 		  	}
 		})
 
