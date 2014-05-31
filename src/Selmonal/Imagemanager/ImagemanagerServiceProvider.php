@@ -1,6 +1,7 @@
 <?php namespace Selmonal\Imagemanager;
 
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Artisan;
@@ -33,6 +34,17 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 
 
 		$this->package('selmonal/imagemanager');
+
+
+		$custom_configs = Config::get("sim");
+
+		foreach(Config::get("imagemanager::config") as $key => $config)
+		{
+			if(array_key_exists($key, $custom_configs))
+			{
+				Config::set("imagemanager::config." . $key , $custom_configs[$key]);
+			}
+		}
 	}
 
 	/**
