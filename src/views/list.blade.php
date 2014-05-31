@@ -17,7 +17,7 @@
 
 		<div class="simbox" style="margin-bottom:10px;" path="<%= image.path %>">
 			<div class="simbox-item img-thumbnail">
-				<img src="/assets/images/thumb/<%= image.path %>" class="simbox-img" />
+				<img src="{{ Config::get("imagemanager::config.basePath") }}thumb/<%= image.path %>" class="simbox-img" />
 				<div class="img-name"><%= image.caption %></div>
 			</div>
 		</div>

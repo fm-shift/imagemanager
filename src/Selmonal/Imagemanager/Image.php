@@ -1,6 +1,7 @@
 <?php namespace Selmonal\Imagemanager;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Config;
 
 class Image extends Model {
 
@@ -28,7 +29,7 @@ class Image extends Model {
 		return array(
 
 			"path"    => $this->path,
-			"thumb"   => "/assets/images/thumb/" . $this->path
+			"thumb"   => Config::get("imagemanager::config.basePath") . "thumb/" . $this->path
 		);
 	}
 	
