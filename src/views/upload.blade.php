@@ -1,4 +1,4 @@
-<div class="template" id="image-manager-upload">
+<script type="text/template" id="image-manager-upload">
 
 	<form id="upload-form" action="/images" method="post" enctype="multipart/form-data" style="padding:20px;">
 		<input type="text" placeholder="Зургын нэр" name="caption" />
@@ -20,4 +20,5 @@
 	<div class="clearfix"></div>
 
 	<span id="uploading-status"></span>
-</div>
+	
+</script>
