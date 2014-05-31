@@ -40,7 +40,7 @@ Service provider ийг өөрийнхөө төсөлд бүртгүүлнэ. `a
 
 Хэрэгцээт asset уудыг өөрийн төсөл рүү татаж авах.
 
-	php artisan asset:publish --package=selmonal/imagemanager
+	php artisan asset:publish
 
 Тохиргооны файл үүсгэх. `app/config` хавтатс `sim.php` тохиргооны файл үүсгэнэ. Дараах тохируулгуудыг хийж өгнө.
 
