@@ -124,7 +124,7 @@ var ImageManagerList = Backbone.View.extend({
 	{
 		var that = this;
 
-		$.get("images", { page: page, query: this.query }, function(response)
+		$.get("/images", { page: page, query: this.query }, function(response)
 		{
 			that.images = response;
 

@@ -22,6 +22,8 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 	 */
 	public function register()
 	{	
+		$this->package('selmonal/imagemanager');
+
 		$path = realpath(__DIR__. "/../../views");
 
 		// naming views
@@ -32,19 +34,7 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 		// Intervention image manipulator
 		App::register("Intervention\Image\ImageServiceProvider");
 
-
-		$this->package('selmonal/imagemanager');
-
-
-		$custom_configs = Config::get("sim");
-
-		foreach(Config::get("imagemanager::config") as $key => $config)
-		{
-			if(array_key_exists($key, $custom_configs))
-			{
-				Config::set("imagemanager::config." . $key , $custom_configs[$key]);
-			}
-		}
+		$sizes = Config::get("imagemanager::sizes");
 	}
 
 	/**

@@ -16,7 +16,7 @@ class ImageManipulator {
 
 	public function __construct()
 	{
-		$this->basePath = public_path() . Config::get("imagemanager::config.basePath");
+		$this->basePath = public_path() . Config::get("imagemanager::basePath");
 
 		$this->folder = date("Ymd");
 	}
@@ -31,7 +31,7 @@ class ImageManipulator {
 		// Create image file path
 		$this->image_path = $this->folder . "/" . $filename;
 
-		$sizes = Config::get("imagemanager::config.sizes");
+		$sizes = Config::get("imagemanager::sizes");
 
 		foreach($sizes as $key => $size)
 		{
