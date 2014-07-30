@@ -221,7 +221,7 @@ var ImageManager = Backbone.View.extend({
 		$("#btn-yes", this.$el).html(Window.lang.yes_btn);
 		$("#btn-yes", this.$el).attr("data-loading-text", Window.lang.not_choosed);
 		$("#btn-exit", this.$el).html(Window.lang.exit);
-
+		$("#grand-title").html(Window.lang.title);
 	},
 
 	select: function( options )

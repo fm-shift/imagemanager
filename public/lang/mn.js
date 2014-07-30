@@ -1,5 +1,6 @@
 Window.lang = {
 
+	title: "Зураг сонгох",
 	title_upload: "Зураг хуулах",
 	title_library: "Зургын сангаас",
 	image_caption: "Зургын нэр",
@@ -16,7 +17,5 @@ Window.lang = {
 
 	page: "Хуудас",
 	total: "Нийт",
-
-
 
 };
