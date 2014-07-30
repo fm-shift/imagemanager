@@ -42,47 +42,9 @@ Service provider ийг өөрийнхөө төсөлд бүртгүүлнэ. `a
 
 	php artisan asset:publish
 
-Тохиргооны файл үүсгэх. `app/config` хавтатс `sim.php` тохиргооны файл үүсгэнэ. Дараах тохируулгуудыг хийж өгнө.
+Тохиргооны файлыг өөрийн төсөл рүү хуулах.
 
-	return array(
-	
-		/*
-		|--------------------------------------------------------------------------
-		| Image manager base path
-		|--------------------------------------------------------------------------
-		|
-		| Зургуудын хадгалагдах хавтас, директор байрлана. Laravel ийн
-		| public хавтаснаас эхлэсэн зам байна.
-		|
-		*/
-
-		"basePath" => "/assets/photos/",
-
-		/*
-		|--------------------------------------------------------------------------
-		| Image sizes
-		|--------------------------------------------------------------------------
-		|
-		| Зургын хадгалагдах хэмжээний төрөлүүд байна. Зургын төрөл бүрээр 
-		| basepath хавтас дотор дэд хавтас үүсгэн зургууд заасан хэмжээний 
-		| дагуу хадгалагдана.
-		|
-		*/
-
-		"sizes" => array(
-
-			"thumb" => array(
-				"width"  => 300,	
-				"height" => 200,			
-			),
-			"original" => array(
-				"width"  => 600,
-				"height" => false,
-				"ratio"  => true,
-			)
-		),
-
-	);
+	php artisan config:publish selmonal/imagemanager
 
 Route зааж өгөх
 
@@ -114,6 +76,10 @@ Route зааж өгөх
 			<script src="/assets/backbone.js"></script>
 
 			<script type="text/javascript" src="/packages/selmonal/imagemanager/ajaxform.js"></script>
+
+			<!-- Хэлний файл mn.js /Монгол/, en.js /Англи/ гэсэн 2 хэлээс сонгож болно. -->
+			<script type="text/javascript" src="/packages/selmonal/imagemanager/lang/mn.js"></script>
+
 			<script type="text/javascript" src="/packages/selmonal/imagemanager/imagemanager.js"></script>
 
 			<script type="text/javascript">
