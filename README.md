@@ -46,7 +46,7 @@ Service provider ийг өөрийнхөө төсөлд бүртгүүлнэ. `a
 
 	php artisan config:publish selmonal/imagemanager
 
-Route зааж өгөх
+Route зааж өгөх. `routes.php` файлд нэмж өгнө.
 
 	Route::resource("images", "Selmonal\Imagemanager\ImagesController", array( "only" => array("index", "store") ));
 
