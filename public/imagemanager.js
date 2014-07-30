@@ -1,6 +1,6 @@
 var ImageManagerUpload = Backbone.View.extend({
 
-	title: "Зураг хуулах",
+	title: Window.lang.title_upload,
 
 	events: {
 
@@ -14,6 +14,10 @@ var ImageManagerUpload = Backbone.View.extend({
 		this.$el.html( html );
 
 		this.btnUpload = this.$("#btn-upload");
+
+		$("input[name=caption]", this.$el).attr("placeholder", Window.lang.image_caption);
+		$("#btn-upload", this.$el).attr("data-loading-text", Window.lang.upload_loading);
+		$("#btn-upload", this.$el).html(Window.lang.upload_button);
 
 		return this;
 	},
@@ -62,7 +66,7 @@ var ImageManagerUpload = Backbone.View.extend({
 
 var ImageManagerList = Backbone.View.extend({
 
-	title: "Зургын сангаас",
+	title: Window.lang.title_library,
 
 	events: {
 
@@ -213,6 +217,10 @@ var ImageManager = Backbone.View.extend({
 		  		that.tools[tabId].firsttime = false;		  		
 		  	}
 		})
+
+		$("#btn-yes", this.$el).html(Window.lang.yes_btn);
+		$("#btn-yes", this.$el).attr("data-loading-text", Window.lang.not_choosed);
+		$("#btn-exit", this.$el).html(Window.lang.exit);
 
 	},
 

@@ -15,8 +15,8 @@
 			</div>
 
 			<div class="modal-footer">
-				<button type="button" class="btn btn-primary btn-select" data-loading-text="Зураг сонгогдоогүй...">Тийм</button>
-				<button type="button" class="btn btn-default" data-dismiss="modal">Гарах</button>
+				<button type="button" id="btn-yes" class="btn btn-primary btn-select" data-loading-text=""></button>
+				<button type="button" id="btn-exit" class="btn btn-default" data-dismiss="modal"><%= Window.lang.exit %></button>
 			</div>
 		</div>
 	</div>

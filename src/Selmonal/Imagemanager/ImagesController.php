@@ -47,7 +47,7 @@ class ImagesController extends Controller {
 
 		catch (\Exception $e) 
 		{
-			return $e;
+			return $e->getMessage();
 		}
 	}
 }
