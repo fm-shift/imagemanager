@@ -9,9 +9,12 @@ class ImagesController extends Controller {
 
 	private $repository;
 
-	public function __construct(ImageRepositoryInterface $repository)
+	private $manipulator = null;
+
+	public function __construct(ImageRepositoryInterface $repository, ImageManipulator $manipulator)
 	{
-		$this->repository = $repository;
+		$this->repository  = $repository;
+		$this->manipulator = $manipulator;
 	}
 
 	/**
@@ -31,16 +34,13 @@ class ImagesController extends Controller {
 	 */
 	public function store()
 	{
-		$manipulator = App::make("Selmonal\Imagemanager\ImageManipulator");
-
 		try 
 		{			
-			$data = $manipulator->run( Input::file("file-image") );
+			$data = $this->manipulator->run( Input::file("file-image") );
 
 			$data["caption"] = Input::get("caption");
 
 			$image = $this->repository->insert( $data );
-
 
 			return $image->forResponse();
 		} 

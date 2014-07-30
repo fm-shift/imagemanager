@@ -14,9 +14,17 @@ class ImageManipulator {
 	 */
 	private $folder = "";
 
-	public function __construct()
+	/**
+	 * Зураг хадгалах зам
+	 * 
+	 * @var string
+	 */
+	private $basePath = "";
+
+	public function __construct($basePath = "", array $sizes = array())
 	{
-		$this->basePath = public_path() . Config::get("imagemanager::basePath");
+		$this->basePath = $basePath;
+		$this->sizes    = $sizes;
 
 		$this->folder = date("Ymd");
 	}
@@ -31,9 +39,7 @@ class ImageManipulator {
 		// Create image file path
 		$this->image_path = $this->folder . "/" . $filename;
 
-		$sizes = Config::get("imagemanager::sizes");
-
-		foreach($sizes as $key => $size)
+		foreach($this->sizes as $key => $size)
 		{
 			$this->createSizeFolder($key);
 			$this->resizeAndSave($file->getRealPath(), $key, $size);

@@ -34,7 +34,13 @@ class ImagemanagerServiceProvider extends ServiceProvider {
 		// Intervention image manipulator
 		App::register("Intervention\Image\ImageServiceProvider");
 
-		$sizes = Config::get("imagemanager::sizes");
+		$this->app->bind("Selmonal\Imagemanager\ImageManipulator", function() 
+		{
+			$basePath = public_path() . Config::get("imagemanager::basePath");
+			$sizes    = Config::get("imagemanager::sizes");
+
+			return new \Selmonal\Imagemanager\ImageManipulator($basePath, $sizes);
+		});
 	}
 
 	/**
