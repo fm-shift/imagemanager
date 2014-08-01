@@ -106,3 +106,5 @@ Route зааж өгөх. `routes.php` файлд нэмж өгнө.
 			</script>
 		</body>
 	</html>
+
+![alt tag](https://raw.github.com/selmonal/imagemanager/master/demo.jpg)
